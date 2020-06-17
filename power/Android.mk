@@ -30,7 +30,9 @@ include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := android.hardware.power@1.2-service.rc
-LOCAL_HEADER_LIBRARIES := generated_kernel_headers
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+    LOCAL_HEADER_LIBRARIES := generated_kernel_headers
+endif
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_PATH := $(TARGET_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/init
 LOCAL_MODULE_STEM :=  android.hardware.power@1.2-service.rc

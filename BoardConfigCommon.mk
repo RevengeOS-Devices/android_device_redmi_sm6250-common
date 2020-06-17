@@ -93,9 +93,11 @@ BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=recovery
 TARGET_KERNEL_ARCH := arm64
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_CLANG_VERSION := r353983d
-TARGET_KERNEL_SOURCE := kernel/redmi/sm6250
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+  TARGET_KERNEL_CLANG_COMPILE := true
+  TARGET_KERNEL_CLANG_VERSION := r353983d
+  TARGET_KERNEL_SOURCE := kernel/redmi/sm6250
+endif
 
 # Platform
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno618
